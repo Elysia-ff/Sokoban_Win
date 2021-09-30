@@ -2,6 +2,11 @@
 
 #include "WindowBase.h"
 
+namespace Elysia::Engine
+{
+class Drawer;
+}
+
 namespace Elysia::Window
 {
 class MainWindow : public WindowBase<MainWindow>
@@ -18,5 +23,8 @@ protected:
 	virtual WNDOPTION GetWndOption() const override;
 
 	virtual LRESULT CALLBACK HandleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
+
+private:
+	Engine::Drawer* drawer;
 };
 } // namespace Elysia::Window

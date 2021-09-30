@@ -1,14 +1,21 @@
 #include "MainWindow.h"
 
+#include "Engine/Drawer.h"
+#include "resource.h"
+
 using Elysia::Window::MainWindow;
+using Elysia::Engine::Drawer;
 
 MainWindow::MainWindow(LPCTSTR className, HINSTANCE hInstance)
 	: WindowBase(className, hInstance)
+	, drawer(new Drawer())
 {
+	drawer->LoadAll(hInstance, { IDB_SAMPLE1, IDB_SAMPLE2 });
 }
 
 MainWindow::~MainWindow()
 {
+	delete drawer;
 }
 
 WNDCLASS MainWindow::GetWndClass() const
@@ -39,6 +46,18 @@ LRESULT CALLBACK MainWindow::HandleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, 
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
+
+		return 0;
+	}
+	case WM_PAINT:
+	{
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint(GetHandle(), &ps);
+
+		drawer->DrawBitmap(hdc, { 0, 0 }, IDB_SAMPLE1);
+		drawer->DrawBitmap(hdc, { 100, 100 }, IDB_SAMPLE2);
+
+		EndPaint(GetHandle(), &ps);
 
 		return 0;
 	}
