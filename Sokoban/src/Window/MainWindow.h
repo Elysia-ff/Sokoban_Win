@@ -1,11 +1,6 @@
 #pragma once
 
-#include "WindowBase.h"
-
-namespace Elysia::Engine
-{
-class Drawer;
-}
+#include "Window/WindowBase.h"
 
 namespace Elysia::Window
 {
@@ -25,6 +20,10 @@ protected:
 	virtual LRESULT CALLBACK HandleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 
 private:
-	Engine::Drawer* drawer;
+	void onCreate();
+
+	void onDestroy();
+
+	void onPaint() const;
 };
 } // namespace Elysia::Window
