@@ -21,7 +21,7 @@ void GameScene::Load()
 {
 	Scene::Load();
 
-	Engine::GameFramework::GetInstance()->GetDrawer().LoadAll({ IDB_SAMPLE1, IDB_SAMPLE2 });
+	Engine::GameFramework::GetInstance().GetDrawer().LoadAll({ IDB_SAMPLE1, IDB_SAMPLE2 });
 
 	Engine::GameObject& obj1 = AddGameObject<Engine::GameObject>(TEXT("sample1"));
 	Engine::ImageComponent& image = AddComponent<Engine::ImageComponent>(obj1.GetInstanceID(), TEXT("image"));

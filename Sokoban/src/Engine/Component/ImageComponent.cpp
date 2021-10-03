@@ -19,7 +19,7 @@ void ImageComponent::OnPaint() const
 {
 	TransformComponent::OnPaint();
 
-	GameFramework::GetInstance()->GetDrawer().DrawBitmap(GetTransform(), imageID);
+	GameFramework::GetInstance().GetDrawer().DrawBitmap(GetTransform(), imageID);
 }
 
 void ImageComponent::SetImage(int newImageID)

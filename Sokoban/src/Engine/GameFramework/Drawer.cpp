@@ -22,7 +22,7 @@ void Drawer::Load(int id)
 {
 	assert(loadedBitmaps.find(id) == loadedBitmaps.end());
 
-	HINSTANCE hInstance = GameFramework::GetInstance()->GetWindow().GetHInstance();
+	HINSTANCE hInstance = GameFramework::GetInstance().GetWindow().GetHInstance();
 	HBITMAP handle = static_cast<HBITMAP>(LoadImage(hInstance, MAKEINTRESOURCE(id), IMAGE_BITMAP, 0, 0, LR_DEFAULTCOLOR));
 	assert(handle != nullptr);
 
@@ -49,7 +49,7 @@ void Drawer::UnloadAll()
 
 void Drawer::BeginPaint()
 {
-	HWND hWnd = GameFramework::GetInstance()->GetWindow().GetHandle();
+	HWND hWnd = GameFramework::GetInstance().GetWindow().GetHandle();
 	hdc = ::BeginPaint(hWnd, &ps);
 }
 
@@ -77,6 +77,6 @@ void Drawer::DrawBitmap(const Transform& transform, int bitmapID) const
 
 void Drawer::EndPaint()
 {
-	HWND hWnd = GameFramework::GetInstance()->GetWindow().GetHandle();
+	HWND hWnd = GameFramework::GetInstance().GetWindow().GetHandle();
 	::EndPaint(hWnd, &ps);
 }

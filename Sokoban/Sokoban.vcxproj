@@ -152,6 +152,7 @@
     <ClCompile Include="src\Engine\Component\TransformComponent.cpp" />
     <ClCompile Include="src\Engine\GameFramework\Drawer.cpp" />
     <ClCompile Include="src\Engine\GameFramework\GameFramework.cpp" />
+    <ClCompile Include="src\Engine\GameFramework\InputManager.cpp" />
     <ClCompile Include="src\Engine\Object\GameObject.cpp" />
     <ClCompile Include="src\Engine\Object\Object.cpp" />
     <ClCompile Include="src\Engine\Scene\Scene.cpp" />
@@ -169,6 +170,8 @@
     <ClInclude Include="src\Engine\EngineCommon.h" />
     <ClInclude Include="src\Engine\GameFramework\GameFramework.h" />
     <ClInclude Include="src\Engine\GameFramework\GameFramework_Templates.hpp" />
+    <ClInclude Include="src\Engine\GameFramework\InputManager.h" />
+    <ClInclude Include="src\Engine\GameFramework\InputManager.hpp" />
     <ClInclude Include="src\Engine\Int2.h" />
     <ClInclude Include="src\Engine\Object\GameObject.h" />
     <ClInclude Include="src\Engine\Object\GameObject_Templates.hpp" />

@@ -57,6 +57,12 @@ LRESULT CALLBACK MainWindow::HandleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, 
 
 		return 0;
 	}
+	case WM_KEYDOWN:
+	{
+		onKeyDown(wParam);
+
+		return 0;
+	}
 	}
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -66,7 +72,7 @@ void MainWindow::onCreate()
 {
 	Engine::GameFramework::Allocate(*this);
 
-	Engine::GameFramework::GetInstance()->LoadSceneByIdx(0);
+	Engine::GameFramework::GetInstance().LoadSceneByIdx(0);
 }
 
 void MainWindow::onDestroy()
@@ -76,5 +82,10 @@ void MainWindow::onDestroy()
 
 void MainWindow::onPaint() const
 {
-	Engine::GameFramework::GetInstance()->OnPaint();
+	Engine::GameFramework::GetInstance().OnPaint();
+}
+
+void MainWindow::onKeyDown(WPARAM key)
+{
+	Engine::GameFramework::GetInstance().OnKeyDown(key);
 }

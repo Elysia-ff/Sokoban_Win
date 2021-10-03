@@ -12,6 +12,7 @@ class MainWindow;
 namespace Elysia::Engine
 {
 class Drawer;
+class InputManager;
 class Scene;
 
 class GameFramework
@@ -19,7 +20,7 @@ class GameFramework
 public:
 	static void Allocate(const Window::MainWindow& _window);
 
-	static GameFramework* GetInstance();
+	static GameFramework& GetInstance();
 
 	static void Release();
 
@@ -31,6 +32,8 @@ public:
 
 	Drawer& GetDrawer() const;
 
+	InputManager& GetInputManager() const;
+
 	void LoadSceneByIdx(int idx);
 
 	void LoadSceneByName(const tstring& sceneName);
@@ -38,6 +41,8 @@ public:
 	void Repaint() const;
 
 	void OnPaint() const;
+
+	void OnKeyDown(WPARAM key) const;
 
 private:
 	GameFramework() = delete;
@@ -49,10 +54,14 @@ private:
 	template <typename T>
 	void addScene(const tstring& sceneName);
 
+	void unloadCurrentScene();
+
 private:
 	const Window::MainWindow& window;
 
 	Drawer* drawer;
+
+	InputManager* inputManager;
 
 	std::vector<Scene*> scenes;
 

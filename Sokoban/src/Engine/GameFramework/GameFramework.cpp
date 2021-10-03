@@ -4,6 +4,7 @@
 
 #include "Window/MainWindow.h"
 #include "Engine/GameFramework/Drawer.h"
+#include "Engine/GameFramework/InputManager.h"
 #include "Engine/Scene/Scene.h"
 
 #include "Game/Scene/GameScene.h"
@@ -16,11 +17,11 @@ void GameFramework::Allocate(const Window::MainWindow& _window)
 	Instance = new GameFramework(_window);
 }
 
-GameFramework* GameFramework::GetInstance()
+GameFramework& GameFramework::GetInstance()
 {
 	assert(Instance != nullptr);
 
-	return Instance;
+	return *Instance;
 }
 
 void GameFramework::Release()
@@ -40,14 +41,16 @@ auto GameFramework::GetDrawer() const -> Drawer&
 	return *drawer;
 }
 
+auto GameFramework::GetInputManager() const -> InputManager&
+{
+	return *inputManager;
+}
+
 void GameFramework::LoadSceneByIdx(int idx)
 {
 	assert(0 <= idx && idx < scenes.size());
 
-	if (currentSceneIdx >= 0)
-	{
-		scenes[currentSceneIdx]->Unload();
-	}
+	unloadCurrentScene();
 
 	currentSceneIdx = idx;
 	scenes[currentSceneIdx]->Load();
@@ -85,9 +88,15 @@ void GameFramework::OnPaint() const
 	}
 }
 
+void GameFramework::OnKeyDown(WPARAM key) const
+{
+	inputManager->OnKeyDown(key);
+}
+
 GameFramework::GameFramework(const Window::MainWindow& _window)
 	: window(_window)
-	, drawer(new Drawer)
+	, drawer(new Drawer())
+	, inputManager(new InputManager())
 	, scenes()
 	, currentSceneIdx(-1)
 {
@@ -96,15 +105,24 @@ GameFramework::GameFramework(const Window::MainWindow& _window)
 
 GameFramework::~GameFramework()
 {
-	if (currentSceneIdx >= 0)
-	{
-		scenes[currentSceneIdx]->Unload();
-	}
+	unloadCurrentScene();
 
 	delete drawer;
+	delete inputManager;
 
 	for (Scene* scene : scenes)
 	{
 		delete scene;
+	}
+}
+
+void GameFramework::unloadCurrentScene()
+{
+	if (currentSceneIdx >= 0)
+	{
+		scenes[currentSceneIdx]->Unload();
+
+		drawer->UnloadAll();
+		inputManager->Clear();
 	}
 }

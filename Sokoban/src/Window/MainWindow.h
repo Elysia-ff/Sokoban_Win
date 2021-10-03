@@ -25,5 +25,7 @@ private:
 	void onDestroy();
 
 	void onPaint() const;
+
+	void onKeyDown(WPARAM key);
 };
 } // namespace Elysia::Window
