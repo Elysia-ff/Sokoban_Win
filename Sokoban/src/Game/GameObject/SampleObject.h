@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Object/GameObject.h"
+#include "Engine/Object/Ptr.h"
 
 namespace Elysia::Engine
 {
@@ -23,7 +24,9 @@ private:
 
 	void moveDown();
 
+	void remove();
+
 private:
-	Engine::ImageComponent* imageComponent;
+	Engine::Ptr<Engine::ImageComponent> imageComponent;
 };
 } // namespace Elysia::Game

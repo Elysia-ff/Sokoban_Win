@@ -17,3 +17,8 @@ unsigned int GameObject::GetInstanceID() const
 {
 	return instanceID;
 }
+
+void GameObject::RemoveComponent(const tstring& componentName)
+{
+	scene.RemoveComponent(GetInstanceID(), componentName);
+}

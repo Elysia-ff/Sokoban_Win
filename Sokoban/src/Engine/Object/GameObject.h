@@ -23,6 +23,8 @@ public:
 	template <typename T>
 	T* GetComponent(const tstring& componentName) const;
 
+	void RemoveComponent(const tstring& componentName);
+
 private:
 	const unsigned int instanceID;
 

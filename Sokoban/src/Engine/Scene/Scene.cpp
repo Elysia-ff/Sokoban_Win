@@ -55,6 +55,23 @@ void Scene::OnPaint() const
 	}
 }
 
+void Scene::RemoveComponent(unsigned int instanceID, const tstring& componentName)
+{
+	assert(components.find(instanceID) != components.end());
+
+	std::vector<Component*>& list = components[instanceID];
+	for (auto iter = list.begin(); iter != list.end(); ++iter)
+	{
+		if ((*iter)->GetName() == componentName)
+		{
+			delete (*iter);
+			list.erase(iter);
+
+			return;
+		}
+	}
+}
+
 auto Scene::findComponent(unsigned int instanceID, const tstring& componentName) const -> Component*
 {
 	auto iter = components.find(instanceID);

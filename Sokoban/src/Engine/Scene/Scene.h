@@ -36,6 +36,8 @@ public:
 	template <typename T>
 	T* GetComponent(unsigned int instanceID, const tstring& componentName) const;
 
+	void RemoveComponent(unsigned int instanceID, const tstring& componentName);
+
 private:
 	Component* findComponent(unsigned int instanceID, const tstring& componentName) const;
 
