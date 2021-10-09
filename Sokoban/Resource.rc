@@ -50,9 +50,11 @@ END
 // Bitmap
 //
 
-IDB_SAMPLE1             BITMAP                  "bitmap1.bmp"
+IDB_WALL                BITMAP                  "Resources\\Wall.bmp"
 
-IDB_SAMPLE2             BITMAP                  "bmp00001.bmp"
+IDB_PACKAGE             BITMAP                  "Resources\\Package.bmp"
+
+IDB_MAN_FRONT           BITMAP                  "Resources\\Man_front.bmp"
 
 #endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////

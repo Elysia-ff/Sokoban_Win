@@ -31,6 +31,9 @@ public:
 	T& AddGameObject(const tstring& objectName);
 
 	template <typename T>
+	T& FindGameObject(const tstring& objectName) const;
+
+	template <typename T>
 	T& AddComponent(unsigned int instanceID, const tstring& componentName);
 
 	template <typename T>

@@ -21,6 +21,23 @@ T& Elysia::Engine::Scene::AddGameObject(const tstring& objectName)
 }
 
 template <typename T>
+T& Elysia::Engine::Scene::FindGameObject(const tstring& objectName) const
+{
+	static_assert(std::is_base_of_v<GameObject, T>, "Type T must be inherited from GameObject");
+	
+	for (GameObject* g : gameObjects)
+	{
+		if (g->GetName() == objectName)
+		{
+			return *dynamic_cast<T*>(g);
+		}
+	}
+
+	assert(false); // unreachable
+	std::terminate();
+}
+
+template <typename T>
 T& Elysia::Engine::Scene::AddComponent(unsigned int instanceID, const tstring& componentName)
 {
 	static_assert(std::is_base_of_v<Component, T>, "Type T must be inherited from Component");

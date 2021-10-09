@@ -156,7 +156,8 @@
     <ClCompile Include="src\Engine\Object\GameObject.cpp" />
     <ClCompile Include="src\Engine\Object\Object.cpp" />
     <ClCompile Include="src\Engine\Scene\Scene.cpp" />
-    <ClCompile Include="src\Game\GameObject\SampleObject.cpp" />
+    <ClCompile Include="src\Game\GameObject\MapManager.cpp" />
+    <ClCompile Include="src\Game\GameObject\Player.cpp" />
     <ClCompile Include="src\Game\Scene\GameScene.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Window\MainWindow.cpp" />
@@ -182,7 +183,9 @@
     <ClInclude Include="src\Engine\Scene\Scene.h" />
     <ClInclude Include="src\Engine\Scene\Scene_Templates.hpp" />
     <ClInclude Include="src\Engine\Transform.h" />
-    <ClInclude Include="src\Game\GameObject\SampleObject.h" />
+    <ClInclude Include="src\Game\GameObject\MapManager.h" />
+    <ClInclude Include="src\Game\GameObject\Player.h" />
+    <ClInclude Include="src\Game\GameCommon.h" />
     <ClInclude Include="src\Game\Scene\GameScene.h" />
     <ClInclude Include="src\Window\MainWindow.h" />
     <ClInclude Include="src\Window\WindowBase.h" />
@@ -192,8 +195,9 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="bitmap1.bmp" />
-    <Image Include="bmp00001.bmp" />
+    <Image Include="Resources\Man_front.bmp" />
+    <Image Include="Resources\Package.bmp" />
+    <Image Include="Resources\Wall.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

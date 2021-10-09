@@ -13,6 +13,8 @@ public:
 
 	Ptr(T* _ptr);
 
+	Ptr(T& _ptr);
+
 	Ptr(const Ptr& source);
 
 	~Ptr();
@@ -30,6 +32,8 @@ public:
 	operator bool() const;
 
 	T* operator->();
+
+	const T* operator->() const;
 
 	virtual void Invalidate() override;
 

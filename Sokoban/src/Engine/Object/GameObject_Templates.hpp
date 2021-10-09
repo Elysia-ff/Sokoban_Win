@@ -5,6 +5,12 @@
 #include "Engine/Scene/Scene.h"
 
 template <typename T>
+T& Elysia::Engine::GameObject::FindGameObject(const tstring& objectName) const
+{
+	return scene.FindGameObject<T>(objectName);
+}
+
+template <typename T>
 T& Elysia::Engine::GameObject::AddComponent(const tstring& componentName)
 {
 	return scene.AddComponent<T>(GetInstanceID(), componentName);

@@ -18,6 +18,9 @@ public:
 	unsigned int GetInstanceID() const;
 
 	template <typename T>
+	T& FindGameObject(const tstring& objectName) const;
+
+	template <typename T>
 	T& AddComponent(const tstring& componentName);
 
 	template <typename T>

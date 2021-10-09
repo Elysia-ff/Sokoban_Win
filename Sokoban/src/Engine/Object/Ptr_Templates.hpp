@@ -18,6 +18,13 @@ Elysia::Engine::Ptr<T>::Ptr(T* _ptr)
 }
 
 template <typename T>
+Elysia::Engine::Ptr<T>::Ptr(T& _ptr)
+	: ptr(&_ptr)
+{
+	Object::AddIPtr(ptr, this);
+}
+
+template <typename T>
 Elysia::Engine::Ptr<T>::Ptr(const Ptr& source)
 	: ptr(source.ptr)
 {
@@ -77,6 +84,14 @@ auto Elysia::Engine::Ptr<T>::operator=(T& _ptr) -> Ptr&
 
 template <typename T>
 T* Elysia::Engine::Ptr<T>::operator->()
+{
+	assert(ptr != nullptr);
+
+	return ptr;
+}
+
+template <typename T>
+const T* Elysia::Engine::Ptr<T>::operator->() const
 {
 	assert(ptr != nullptr);
 
