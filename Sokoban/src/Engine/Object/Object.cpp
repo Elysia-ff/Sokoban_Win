@@ -5,21 +5,23 @@
 
 using Elysia::Engine::Object;
 
-std::unordered_map<void*, std::unordered_set<Elysia::Engine::IPtr*>> Object::allocatedMems;
+std::unordered_map<Object*, std::unordered_set<Elysia::Engine::IPtr*>> Object::allocatedMems;
 
 void* Object::operator new(size_t size)
 {
 	void* ptr = malloc(size);
 
-	assert(allocatedMems.find(ptr) == allocatedMems.end());
-	allocatedMems.insert({ ptr, std::unordered_set<Elysia::Engine::IPtr*>() });
+	Object* oPtr = static_cast<Object*>(ptr);
+	assert(allocatedMems.find(oPtr) == allocatedMems.end());
+	allocatedMems.insert({ oPtr, std::unordered_set<Elysia::Engine::IPtr*>() });
 
 	return ptr;
 }
 
 void Object::operator delete(void* ptr)
 {
-	auto iter = allocatedMems.find(ptr);
+	Object* oPtr = static_cast<Object*>(ptr);
+	auto iter = allocatedMems.find(oPtr);
 	assert(iter != allocatedMems.end());
 	
 	for (Elysia::Engine::IPtr* p : iter->second)
@@ -31,7 +33,7 @@ void Object::operator delete(void* ptr)
 	free(ptr);
 }
 
-void Object::AddIPtr(void* p, Elysia::Engine::IPtr* iptr)
+void Object::AddIPtr(Object* p, Elysia::Engine::IPtr* iptr)
 {
 	if (p != nullptr)
 	{
@@ -42,7 +44,7 @@ void Object::AddIPtr(void* p, Elysia::Engine::IPtr* iptr)
 	}
 }
 
-void Object::DeleteIPtr(void* p, Elysia::Engine::IPtr* iptr)
+void Object::DeleteIPtr(Object* p, Elysia::Engine::IPtr* iptr)
 {
 	if (p != nullptr)
 	{

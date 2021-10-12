@@ -2,6 +2,8 @@
 
 #include "Engine/Component/ImageComponent.h"
 
+#include "Game/GameObject/MapManager.h"
+
 #include "resource.h"
 
 using Elysia::Game::Package;
@@ -10,8 +12,27 @@ Package::Package(const tstring& _name, unsigned int _instanceID, Engine::Scene& 
 	: MapObject(_name, _instanceID, _scene)
 {
 	image->SetImage(IDB_PACKAGE);
+
+	mapManager = FindGameObject<MapManager>(TEXT("MapManager"));
 }
 
 Package::~Package()
 {
+}
+
+bool Package::CanMove(Int2 input) const
+{
+	Int2 pos = GetPosition();
+	Int2 newPos = pos + input;
+
+	return mapManager == nullptr ||
+		(!mapManager->Is(MapInfo::Wall, newPos) && !mapManager->IsPackagePos(newPos));
+}
+
+void Package::Push(Int2 input)
+{
+	Int2 pos = GetPosition();
+	Int2 newPos = pos + input;
+
+	SetPosition(newPos);
 }

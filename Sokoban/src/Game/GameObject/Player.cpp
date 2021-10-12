@@ -5,6 +5,7 @@
 #include "Engine/Component/ImageComponent.h"
 
 #include "Game/GameObject/MapManager.h"
+#include "Game/GameObject/Package.h"
 
 #include "resource.h"
 
@@ -30,40 +31,49 @@ Player::~Player()
 
 void Player::moveUp()
 {
-	Int2 pos = GetPosition();
-	Int2 newPos(pos.x, pos.y - 1);
-	if (mapManager != nullptr && !mapManager->Is(MapInfo::Wall, newPos))
-	{
-		SetPosition(newPos);
-	}
+	moveBy(Int2(0, -1));
 }
 
 void Player::moveDown()
 {
-	Int2 pos = GetPosition();
-	Int2 newPos(pos.x, pos.y + 1);
-	if (mapManager != nullptr && !mapManager->Is(MapInfo::Wall, newPos))
-	{
-		SetPosition(newPos);
-	}
+	moveBy(Int2(0, 1));
 }
 
 void Player::moveRight()
 {
-	Int2 pos = GetPosition();
-	Int2 newPos(pos.x + 1, pos.y);
-	if (mapManager != nullptr && !mapManager->Is(MapInfo::Wall, newPos))
-	{
-		SetPosition(newPos);
-	}
+	moveBy(Int2(1, 0));
 }
 
 void Player::moveLeft()
 {
+	moveBy(Int2(-1, 0));
+}
+
+void Player::moveBy(Int2 input)
+{
 	Int2 pos = GetPosition();
-	Int2 newPos(pos.x - 1, pos.y);
-	if (mapManager != nullptr && !mapManager->Is(MapInfo::Wall, newPos))
+	Int2 newPos = pos + input;
+
+	if (mapManager != nullptr)
 	{
-		SetPosition(newPos);
+		if (mapManager->Is(MapInfo::Wall, newPos))
+		{
+			return;
+		}
+
+		Engine::Ptr<Package> package;
+		if (mapManager->GetPackagePos(newPos, &package))
+		{
+			if (package->CanMove(input))
+			{
+				package->Push(input);
+			}
+			else
+			{
+				return;
+			}
+		}
 	}
+
+	SetPosition(newPos);
 }

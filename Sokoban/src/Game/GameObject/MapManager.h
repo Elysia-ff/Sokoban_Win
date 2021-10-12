@@ -14,6 +14,9 @@ class ImageComponent;
 
 namespace Elysia::Game
 {
+class Package;
+class Goal;
+
 using MapData = std::vector<std::vector<char>>;
 
 class MapManager : public Engine::GameObject
@@ -29,12 +32,20 @@ public:
 
 	bool Is(MapInfo mapInfo, Int2 pos) const;
 
+	bool IsPackagePos(Int2 pos) const;
+
+	bool GetPackagePos(Int2 pos, Engine::Ptr<Package>* output) const;
+
 	std::vector<Int2> GetPoses(MapInfo mapInfo) const;
 
 private:
-	void clear();
+	void clearData();
 
 private:
 	MapData mapData;
+
+	std::vector<Engine::Ptr<Package>> packages;
+
+	std::vector<Engine::Ptr<Goal>> goals;
 };
 } // namespace Elysia::Game

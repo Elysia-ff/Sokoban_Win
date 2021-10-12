@@ -22,12 +22,12 @@ public:
 
 	static void operator delete(void* ptr) noexcept;
 
-	static void AddIPtr(void* p, IPtr* iptr);
+	static void AddIPtr(Object* p, IPtr* iptr);
 
-	static void DeleteIPtr(void* p, IPtr* iptr);
+	static void DeleteIPtr(Object* p, IPtr* iptr);
 
 private:
-	static std::unordered_map<void*, std::unordered_set<IPtr*>> allocatedMems;
+	static std::unordered_map<Object*, std::unordered_set<IPtr*>> allocatedMems;
 
 public:
 	Object() = delete;

@@ -24,6 +24,8 @@ private:
 
 	void moveLeft();
 
+	void moveBy(Int2 input);
+
 private:
 	Engine::Ptr<MapManager> mapManager;
 };
