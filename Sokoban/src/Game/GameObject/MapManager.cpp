@@ -109,6 +109,23 @@ std::vector<Int2> MapManager::GetPoses(MapInfo mapInfo) const
 	return result;
 }
 
+void MapManager::OnPackageMoved(Package& movedPackage, Int2 prevPos)
+{
+	for (Engine::Ptr<Goal>& goal : goals)
+	{
+		if (goal->GetPosition() == prevPos)
+		{
+			goal->SetAsEmpty();
+			movedPackage.SetActive(true);
+		}
+		else if (goal->GetPosition() == movedPackage.GetPosition())
+		{
+			goal->SetAsFilled();
+			movedPackage.SetActive(false);
+		}
+	}
+}
+
 void MapManager::clearData()
 {
 	for (auto iter = mapData.begin(); iter != mapData.end(); ++iter)

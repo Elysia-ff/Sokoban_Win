@@ -22,8 +22,8 @@ Package::~Package()
 
 bool Package::CanMove(Int2 input) const
 {
-	Int2 pos = GetPosition();
-	Int2 newPos = pos + input;
+	Int2 prevPos = GetPosition();
+	Int2 newPos = prevPos + input;
 
 	return mapManager == nullptr ||
 		(!mapManager->Is(MapInfo::Wall, newPos) && !mapManager->IsPackagePos(newPos));
@@ -31,8 +31,13 @@ bool Package::CanMove(Int2 input) const
 
 void Package::Push(Int2 input)
 {
-	Int2 pos = GetPosition();
-	Int2 newPos = pos + input;
+	Int2 prevPos = GetPosition();
+	Int2 newPos = prevPos + input;
 
 	SetPosition(newPos);
+
+	if (mapManager != nullptr)
+	{
+		mapManager->OnPackageMoved(*this, prevPos);
+	}
 }

@@ -12,5 +12,9 @@ public:
 	Goal(const tstring& _name, unsigned int _instanceID, Engine::Scene& _scene);
 
 	virtual ~Goal() override;
+
+	void SetAsEmpty();
+
+	void SetAsFilled();
 };
 } // Elysia::Game

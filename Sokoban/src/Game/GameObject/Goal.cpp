@@ -9,9 +9,19 @@ using Elysia::Game::Goal;
 Goal::Goal(const tstring& _name, unsigned int _instanceID, Engine::Scene& _scene)
 	: MapObject(_name, _instanceID, _scene)
 {
-	image->SetImage(IDB_GOAL_EMPTY);
+	SetAsEmpty();
 }
 
 Goal::~Goal()
 {
+}
+
+void Goal::SetAsEmpty()
+{
+	image->SetImage(IDB_GOAL_EMPTY);
+}
+
+void Goal::SetAsFilled()
+{
+	image->SetImage(IDB_GOAL_FILLED);
 }

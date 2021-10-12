@@ -14,5 +14,12 @@ public:
 	virtual ~Component() override;
 
 	virtual void OnPaint() const;
+
+	void SetActive(bool value);
+
+	bool IsActive() const;
+
+private:
+	bool isActive;
 };
 }; // namespace Elysia::Engine

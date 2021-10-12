@@ -38,6 +38,8 @@ public:
 
 	std::vector<Int2> GetPoses(MapInfo mapInfo) const;
 
+	void OnPackageMoved(Package& movedPackage, Int2 prevPos);
+
 private:
 	void clearData();
 

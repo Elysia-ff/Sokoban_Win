@@ -31,3 +31,11 @@ Int2 MapObject::GetPosition() const
 {
 	return pos;
 }
+
+void MapObject::SetActive(bool value)
+{
+	if (image != nullptr)
+	{
+		image->SetActive(value);
+	}
+}

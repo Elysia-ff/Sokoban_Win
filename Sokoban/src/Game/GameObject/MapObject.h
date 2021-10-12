@@ -23,6 +23,8 @@ public:
 
 	Int2 GetPosition() const;
 
+	void SetActive(bool value);
+
 protected:
 	Engine::Ptr<Engine::ImageComponent> image;
 
