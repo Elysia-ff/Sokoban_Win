@@ -56,6 +56,10 @@ IDB_PACKAGE             BITMAP                  "Resources\\Package.bmp"
 
 IDB_MAN_FRONT           BITMAP                  "Resources\\Man_front.bmp"
 
+IDB_GOAL_EMPTY          BITMAP                  "Resources\\Goal_empty.bmp"
+
+IDB_GOAL_FILLED         BITMAP                  "Resources\\Goal_filled.bmp"
+
 #endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 

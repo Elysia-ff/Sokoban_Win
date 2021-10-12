@@ -1,19 +1,12 @@
 #pragma once
 
-#include "Engine/EngineCommon.h"
-#include "Engine/Object/GameObject.h"
-#include "Engine/Object/Ptr.h"
-
-namespace Elysia::Engine
-{
-class ImageComponent;
-}
+#include "Game/GameObject/MapObject.h"
 
 namespace Elysia::Game
 {
 class MapManager;
 
-class Player : public Engine::GameObject
+class Player : public MapObject
 {
 	DECLARE_TYPENAME(Player);
 
@@ -22,11 +15,7 @@ public:
 
 	virtual ~Player() override;
 
-	void SetPosition(Int2 newPos);
-
 private:
-	void updateImage();
-
 	void moveUp();
 
 	void moveDown();
@@ -37,9 +26,5 @@ private:
 
 private:
 	Engine::Ptr<MapManager> mapManager;
-
-	Engine::Ptr<Engine::ImageComponent> image;
-
-	Int2 pos;
 };
 } // namespace Elysia::Game

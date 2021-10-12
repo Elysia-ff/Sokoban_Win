@@ -11,6 +11,7 @@ Drawer::Drawer()
 	: loadedBitmaps()
 	, ps()
 	, hdc()
+	, chromaKey(RGB(0, 255, 0))
 {
 }
 
@@ -69,7 +70,7 @@ void Drawer::DrawBitmap(const Transform& transform, int bitmapID) const
 	int y = transform.position.y;
 	int width = static_cast<int>(temp.bmWidth) * transform.scale.x;
 	int height = static_cast<int>(temp.bmHeight) * transform.scale.y;
-	StretchBlt(hdc, x, y, width, height, memDC, 0, 0, temp.bmWidth, temp.bmHeight, SRCCOPY);
+	TransparentBlt(hdc, x, y, width, height, memDC, 0, 0, temp.bmWidth, temp.bmHeight, chromaKey);
 
 	SelectObject(memDC, oldBitmap);
 	DeleteDC(memDC);

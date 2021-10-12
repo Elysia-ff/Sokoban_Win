@@ -36,5 +36,7 @@ private:
 	PAINTSTRUCT ps;
 
 	HDC hdc;
+
+	const UINT chromaKey;
 };
 } // namespace Elysia::Engine

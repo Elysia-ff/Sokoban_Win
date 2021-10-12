@@ -2,12 +2,11 @@
 // Microsoft Visual C++ generated include file.
 // Used by Resource.rc
 //
-#define IDB_SAMPLE1                     101
-#define IDB_SAMPLE2                     102
-#define IDB_WALL                        103
-#define IDB_PACKAGE                     104
-#define IDB_BITMAP1                     105
-#define IDB_MAN_FRONT                   105
+#define IDB_WALL                        101
+#define IDB_PACKAGE                     102
+#define IDB_MAN_FRONT                   103
+#define IDB_GOAL_EMPTY                  104
+#define IDB_GOAL_FILLED                 105
 
 // Next default values for new objects
 // 
