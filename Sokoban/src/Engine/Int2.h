@@ -32,3 +32,13 @@ inline Int2 operator+(Int2 a, Int2 b)
 {
 	return Int2(a.x + b.x, a.y + b.y);
 }
+
+inline Int2 operator-(Int2 a, Int2 b)
+{
+	return Int2(a.x - b.x, a.y - b.y);
+}
+
+inline Int2 operator/(Int2 a, int n)
+{
+	return Int2(a.x / n, a.y / n);
+}

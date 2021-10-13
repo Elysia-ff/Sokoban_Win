@@ -38,6 +38,10 @@ public:
 
 	void LoadSceneByName(const tstring& sceneName);
 
+	int GetCurrentSceneIdx() const;
+
+	int GetSceneCount() const;
+
 	void Repaint() const;
 
 	void OnPaint() const;

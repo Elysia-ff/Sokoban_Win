@@ -30,6 +30,8 @@ public:
 
 	void EndPaint();
 
+	Int2 GetBitmapSize(int bitmapID) const;
+
 private:
 	std::unordered_map<int, HBITMAP> loadedBitmaps;
 

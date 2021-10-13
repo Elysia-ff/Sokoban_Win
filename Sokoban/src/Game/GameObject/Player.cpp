@@ -56,7 +56,7 @@ void Player::moveBy(Int2 input)
 
 	if (mapManager != nullptr)
 	{
-		if (mapManager->Is(MapInfo::Wall, newPos))
+		if (mapManager->IsCleared() || mapManager->Is(MapInfo::Wall, newPos))
 		{
 			return;
 		}
@@ -64,14 +64,12 @@ void Player::moveBy(Int2 input)
 		Engine::Ptr<Package> package;
 		if (mapManager->GetPackagePos(newPos, &package))
 		{
-			if (package->CanMove(input))
-			{
-				package->Push(input);
-			}
-			else
+			if (!package->CanMove(input))
 			{
 				return;
 			}
+
+			package->Push(input);
 		}
 	}
 

@@ -81,3 +81,14 @@ void Drawer::EndPaint()
 	HWND hWnd = GameFramework::GetInstance().GetWindow().GetHandle();
 	::EndPaint(hWnd, &ps);
 }
+
+Int2 Drawer::GetBitmapSize(int bitmapID) const
+{
+	assert(loadedBitmaps.find(bitmapID) != loadedBitmaps.end());
+	auto iter = loadedBitmaps.find(bitmapID);
+
+	BITMAP temp{};
+	GetObject(iter->second, sizeof(BITMAP), &temp);
+
+	return Int2(temp.bmWidth, temp.bmHeight);
+}

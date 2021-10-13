@@ -60,6 +60,8 @@ IDB_GOAL_EMPTY          BITMAP                  "Resources\\Goal_empty.bmp"
 
 IDB_GOAL_FILLED         BITMAP                  "Resources\\Goal_filled.bmp"
 
+IDB_CLEAR               BITMAP                  "Resources\\Clear.bmp"
+
 #endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 

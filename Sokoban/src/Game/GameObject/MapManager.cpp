@@ -6,6 +6,7 @@
 
 #include "Game/GameObject/Package.h"
 #include "Game/GameObject/Goal.h"
+#include "Game/GameObject/ClearImg.h"
 
 #include "resource.h"
 
@@ -13,6 +14,9 @@ using Elysia::Game::MapManager;
 
 MapManager::MapManager(const tstring& _name, unsigned int _instanceID, Engine::Scene& scene)
 	: GameObject(_name, _instanceID, scene)
+	, isCleared(false)
+	, mapWidth(0)
+	, mapHeight(0)
 {
 }
 
@@ -26,10 +30,16 @@ void MapManager::SetMapData(const MapData& newMapData)
 
 	mapData = newMapData;
 
+	mapHeight = static_cast<int>(mapData.size());
 	for (size_t y = 0; y < mapData.size(); y++)
 	{
 		for (size_t x = 0; x < mapData[y].size(); x++)
 		{
+			if (mapWidth < mapData[y].size())
+			{
+				mapWidth = static_cast<int>(mapData[y].size());
+			}
+
 			Int2 pos = MakeInt2(x, y);
 			if (Is(MapInfo::Wall, pos))
 			{
@@ -111,6 +121,7 @@ std::vector<Int2> MapManager::GetPoses(MapInfo mapInfo) const
 
 void MapManager::OnPackageMoved(Package& movedPackage, Int2 prevPos)
 {
+	int filledGoalsCount = 0;
 	for (Engine::Ptr<Goal>& goal : goals)
 	{
 		if (goal->GetPosition() == prevPos)
@@ -123,7 +134,25 @@ void MapManager::OnPackageMoved(Package& movedPackage, Int2 prevPos)
 			goal->SetAsFilled();
 			movedPackage.SetActive(false);
 		}
+
+		if (goal->IsFilled())
+		{
+			filledGoalsCount++;
+		}
 	}
+
+	if (filledGoalsCount == goals.size())
+	{
+		isCleared = true;
+
+		ClearImg& obj = AddGameObject<ClearImg>(TEXT("clearImg"));
+		obj.MoveToCenter(mapWidth, mapHeight);
+	}
+}
+
+bool MapManager::IsCleared() const
+{
+	return isCleared;
 }
 
 void MapManager::clearData()
@@ -133,6 +162,8 @@ void MapManager::clearData()
 		iter->clear();
 	}
 	mapData.clear();
+	mapWidth = 0;
+	mapHeight = 0;
 
 	packages.clear();
 	goals.clear();

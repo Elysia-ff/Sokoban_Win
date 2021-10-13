@@ -25,7 +25,7 @@ void GameScene::Load()
 	Scene::Load();
 
 	Engine::GameFramework::GetInstance().GetDrawer().LoadAll(
-		{ IDB_WALL, IDB_PACKAGE, IDB_MAN_FRONT, IDB_GOAL_EMPTY, IDB_GOAL_FILLED }
+		{ IDB_WALL, IDB_PACKAGE, IDB_MAN_FRONT, IDB_GOAL_EMPTY, IDB_GOAL_FILLED, IDB_CLEAR }
 	);
 
 	MapManager& mapManager = AddGameObject<MapManager>(TEXT("MapManager"));

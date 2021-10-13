@@ -2,6 +2,8 @@
 
 #include "Ptr.h"
 
+#include <cassert>
+
 #include "Engine/Object/Object.h"
 
 template <typename T>

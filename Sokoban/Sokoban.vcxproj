@@ -160,6 +160,7 @@
     <ClCompile Include="src\Engine\Object\GameObject.cpp" />
     <ClCompile Include="src\Engine\Object\Object.cpp" />
     <ClCompile Include="src\Engine\Scene\Scene.cpp" />
+    <ClCompile Include="src\Game\GameObject\ClearImg.cpp" />
     <ClCompile Include="src\Game\GameObject\Goal.cpp" />
     <ClCompile Include="src\Game\GameObject\MapManager.cpp" />
     <ClCompile Include="src\Game\GameObject\MapObject.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="src\Engine\Scene\Scene.h" />
     <ClInclude Include="src\Engine\Scene\Scene_Templates.hpp" />
     <ClInclude Include="src\Engine\Transform.h" />
+    <ClInclude Include="src\Game\GameObject\ClearImg.h" />
     <ClInclude Include="src\Game\GameObject\Goal.h" />
     <ClInclude Include="src\Game\GameObject\MapManager.h" />
     <ClInclude Include="src\Game\GameObject\MapObject.h" />
@@ -205,6 +207,7 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\Clear.bmp" />
     <Image Include="Resources\Goal_empty.bmp" />
     <Image Include="Resources\Goal_filled.bmp" />
     <Image Include="Resources\Man_front.bmp" />

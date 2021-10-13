@@ -40,14 +40,22 @@ public:
 
 	void OnPackageMoved(Package& movedPackage, Int2 prevPos);
 
+	bool IsCleared() const;
+
 private:
 	void clearData();
 
 private:
 	MapData mapData;
 
+	int mapWidth;
+
+	int mapHeight;
+
 	std::vector<Engine::Ptr<Package>> packages;
 
 	std::vector<Engine::Ptr<Goal>> goals;
+
+	bool isCleared;
 };
 } // namespace Elysia::Game

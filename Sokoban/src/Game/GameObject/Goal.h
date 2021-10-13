@@ -16,5 +16,10 @@ public:
 	void SetAsEmpty();
 
 	void SetAsFilled();
+
+	bool IsFilled() const;
+
+private:
+	bool isFilled;
 };
 } // Elysia::Game

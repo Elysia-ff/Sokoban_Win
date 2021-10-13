@@ -73,6 +73,16 @@ void GameFramework::LoadSceneByName(const tstring& sceneName)
 	assert(false); // unreachable
 }
 
+int GameFramework::GetCurrentSceneIdx() const
+{
+	return currentSceneIdx;
+}
+
+int GameFramework::GetSceneCount() const
+{
+	return static_cast<int>(scenes.size());
+}
+
 void GameFramework::Repaint() const
 {
 	InvalidateRect(window.GetHandle(), nullptr, TRUE);
