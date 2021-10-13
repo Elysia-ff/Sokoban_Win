@@ -7,7 +7,7 @@
 #include "Engine/GameFramework/InputManager.h"
 #include "Engine/Scene/Scene.h"
 
-#include "Game/Scene/GameScene.h"
+#include "Game/Scene/Level_1.h"
 
 using Elysia::Engine::GameFramework;
 
@@ -110,7 +110,7 @@ GameFramework::GameFramework(const Window::MainWindow& _window)
 	, scenes()
 	, currentSceneIdx(-1)
 {
-	addScene<Game::GameScene>(TEXT("GameScene"));
+	addScene<Game::Level_1>(TEXT("Level_1"));
 }
 
 GameFramework::~GameFramework()

@@ -166,7 +166,7 @@
     <ClCompile Include="src\Game\GameObject\MapObject.cpp" />
     <ClCompile Include="src\Game\GameObject\Package.cpp" />
     <ClCompile Include="src\Game\GameObject\Player.cpp" />
-    <ClCompile Include="src\Game\Scene\GameScene.cpp" />
+    <ClCompile Include="src\Game\Scene\Level_1.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Window\MainWindow.cpp" />
   </ItemGroup>
@@ -198,7 +198,7 @@
     <ClInclude Include="src\Game\GameObject\Package.h" />
     <ClInclude Include="src\Game\GameObject\Player.h" />
     <ClInclude Include="src\Game\GameCommon.h" />
-    <ClInclude Include="src\Game\Scene\GameScene.h" />
+    <ClInclude Include="src\Game\Scene\Level_1.h" />
     <ClInclude Include="src\Window\MainWindow.h" />
     <ClInclude Include="src\Window\WindowBase.h" />
     <ClInclude Include="src\Window\WindowBase.hpp" />

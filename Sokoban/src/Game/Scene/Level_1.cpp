@@ -1,4 +1,4 @@
-#include "GameScene.h"
+#include "Level_1.h"
 
 #include "Engine/GameFramework/GameFramework.h"
 #include "Engine/GameFramework/Drawer.h"
@@ -9,18 +9,18 @@
 
 #include "resource.h"
 
-using Elysia::Game::GameScene;
+using Elysia::Game::Level_1;
 
-GameScene::GameScene(const tstring& _name, int _sceneIdx)
+Level_1::Level_1(const tstring& _name, int _sceneIdx)
 	: Scene(_name, _sceneIdx)
 {
 }
 
-GameScene::~GameScene()
+Level_1::~Level_1()
 {
 }
 
-void GameScene::Load()
+void Level_1::Load()
 {
 	Scene::Load();
 
@@ -47,7 +47,7 @@ void GameScene::Load()
 	player.SetPosition(playerPoses[0]);
 }
 
-void GameScene::Unload()
+void Level_1::Unload()
 {
 	Scene::Unload();
 }

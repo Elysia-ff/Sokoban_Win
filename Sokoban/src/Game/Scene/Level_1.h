@@ -4,14 +4,14 @@
 
 namespace Elysia::Game
 {
-class GameScene : public Engine::Scene
+class Level_1 : public Engine::Scene
 {
-	DECLARE_TYPENAME(GameScene);
+	DECLARE_TYPENAME(Level_1);
 
 public:
-	GameScene(const tstring& _name, int _sceneIdx);
+	Level_1(const tstring& _name, int _sceneIdx);
 
-	virtual ~GameScene() override;
+	virtual ~Level_1() override;
 
 	virtual void Load() override;
 
