@@ -23,6 +23,7 @@ Player::Player(const tstring& _name, unsigned int _instanceID, Engine::Scene& _s
 	inputManager.RegisterKey(this, VK_DOWN, &Player::moveDown);
 	inputManager.RegisterKey(this, VK_RIGHT, &Player::moveRight);
 	inputManager.RegisterKey(this, VK_LEFT, &Player::moveLeft);
+	inputManager.RegisterKey(this, 'Z', &Player::undo);
 }
 
 Player::~Player()
@@ -53,6 +54,7 @@ void Player::moveBy(Int2 input)
 {
 	Int2 pos = GetPosition();
 	Int2 newPos = pos + input;
+	bool bPush = false;
 
 	if (mapManager != nullptr)
 	{
@@ -70,8 +72,34 @@ void Player::moveBy(Int2 input)
 			}
 
 			package->Push(input);
+			bPush = true;
 		}
 	}
 
 	SetPosition(newPos);
+	prevInputs.push({ input, bPush });
+}
+
+void Player::undo()
+{
+	if (mapManager != nullptr && !mapManager->IsCleared() && prevInputs.size() > 0)
+	{
+		Record record = prevInputs.top();
+		prevInputs.pop();
+
+		Int2 reversedInput = record.input * -1;
+
+		if (record.bPush)
+		{
+			Int2 packagePos = GetPosition() + record.input;
+			Engine::Ptr<Package> package;
+			if (mapManager->GetPackagePos(packagePos, &package))
+			{
+				package->Push(reversedInput);
+			}
+		}
+
+		Int2 newPos = GetPosition() + reversedInput;
+		SetPosition(newPos);
+	}
 }

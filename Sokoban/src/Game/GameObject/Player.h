@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stack>
+
 #include "Game/GameObject/MapObject.h"
 
 namespace Elysia::Game
@@ -8,6 +10,13 @@ class MapManager;
 
 class Player : public MapObject
 {
+private:
+	struct Record
+	{
+		Int2 input;
+		bool bPush;
+	};
+
 	DECLARE_TYPENAME(Player);
 
 public:
@@ -26,7 +35,11 @@ private:
 
 	void moveBy(Int2 input);
 
+	void undo();
+
 private:
 	Engine::Ptr<MapManager> mapManager;
+
+	std::stack<Record> prevInputs;
 };
 } // namespace Elysia::Game
