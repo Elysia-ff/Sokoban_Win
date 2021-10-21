@@ -2,6 +2,8 @@
 
 #include "Engine/GameFramework/GameFramework.h"
 
+#include "resource.h"
+
 using Elysia::Window::MainWindow;
 
 MainWindow::MainWindow(LPCTSTR className, HINSTANCE hInstance)
@@ -17,6 +19,7 @@ WNDCLASS MainWindow::GetWndClass() const
 {
 	WNDCLASS wndClass{};
 	wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(COLOR_WINDOW + 1));
+	wndClass.lpszMenuName = MAKEINTRESOURCE(IDR_MENU1);
 	wndClass.style = CS_VREDRAW | CS_HREDRAW;
 
 	return wndClass;
@@ -63,6 +66,12 @@ LRESULT CALLBACK MainWindow::HandleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, 
 
 		return 0;
 	}
+	case WM_COMMAND:
+	{
+		onCommand(wParam);
+
+		return 0;
+	}
 	}
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -85,7 +94,12 @@ void MainWindow::onPaint() const
 	Engine::GameFramework::GetInstance().OnPaint();
 }
 
-void MainWindow::onKeyDown(WPARAM key)
+void MainWindow::onKeyDown(WPARAM key) const
 {
 	Engine::GameFramework::GetInstance().OnKeyDown(key);
+}
+
+void MainWindow::onCommand(WPARAM wParam) const
+{
+	Engine::GameFramework::GetInstance().OnCommand(wParam);
 }

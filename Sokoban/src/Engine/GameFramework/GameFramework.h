@@ -48,6 +48,8 @@ public:
 
 	void OnKeyDown(WPARAM key) const;
 
+	void OnCommand(WPARAM wParam) const;
+
 private:
 	GameFramework() = delete;
 
@@ -59,6 +61,10 @@ private:
 	void addScene(const tstring& sceneName);
 
 	void unloadCurrentScene();
+
+	void startGame();
+
+	void loadMapBuilderScene();
 
 private:
 	const Window::MainWindow& window;

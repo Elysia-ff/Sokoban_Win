@@ -41,7 +41,7 @@ void ClearImg::loadNextScene()
 {
 	Engine::GameFramework& framework = Engine::GameFramework::GetInstance();
 	int nextSceneIdx = framework.GetCurrentSceneIdx() + 1;
-	int sceneCount = framework.GetSceneCount();
+	int sceneCount = framework.GetSceneCount() - 1; // last scene is MapBuilder, so ignore it.
 
 	if (nextSceneIdx < sceneCount)
 	{

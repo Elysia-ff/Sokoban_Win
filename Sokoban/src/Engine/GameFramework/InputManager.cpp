@@ -31,3 +31,16 @@ void InputManager::OnKeyDown(WPARAM key) const
 		GameFramework::GetInstance().Repaint();
 	}
 }
+
+void InputManager::OnCommand(WORD cmd) const
+{
+	auto iter = commandBinds.find(cmd);
+	if (iter != commandBinds.end())
+	{
+		const std::vector<std::function<void()>>& v = iter->second;
+		for (const std::function<void()>& f : v)
+		{
+			f();
+		}
+	}
+}

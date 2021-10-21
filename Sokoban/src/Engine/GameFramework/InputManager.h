@@ -26,8 +26,15 @@ public:
 
 	void OnKeyDown(WPARAM key) const;
 
+	template <typename T, typename Func>
+	void RegisterCommand(T obj, WORD cmd, Func func);
+
+	void OnCommand(WORD cmd) const;
+
 private:
 	std::unordered_map<WPARAM, std::vector<std::function<void()>>> keyBinds;
+
+	std::unordered_map<WORD, std::vector<std::function<void()>>> commandBinds;
 };
 }; // namespace Elysia::Engine
 

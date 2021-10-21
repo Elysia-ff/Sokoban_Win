@@ -62,6 +62,21 @@ IDB_GOAL_FILLED         BITMAP                  "Resources\\Goal_filled.bmp"
 
 IDB_CLEAR               BITMAP                  "Resources\\Clear.bmp"
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU
+BEGIN
+    POPUP "Menu"
+    BEGIN
+        MENUITEM "Start Game",                  ID_MENU_STARTGAME
+        MENUITEM "Map Builder",                 ID_MENU_MAPBUILDER
+    END
+END
+
 #endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 

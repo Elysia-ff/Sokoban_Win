@@ -9,6 +9,9 @@
 
 #include "Game/Scene/Level_1.h"
 #include "Game/Scene/Level_2.h"
+#include "Game/Scene/MapMakerScene.h"
+
+#include "resource.h"
 
 using Elysia::Engine::GameFramework;
 
@@ -104,6 +107,11 @@ void GameFramework::OnKeyDown(WPARAM key) const
 	inputManager->OnKeyDown(key);
 }
 
+void GameFramework::OnCommand(WPARAM wParam) const
+{
+	inputManager->OnCommand(LOWORD(wParam));
+}
+
 GameFramework::GameFramework(const Window::MainWindow& _window)
 	: window(_window)
 	, drawer(new Drawer())
@@ -113,6 +121,11 @@ GameFramework::GameFramework(const Window::MainWindow& _window)
 {
 	addScene<Game::Level_1>(TEXT("Level_1"));
 	addScene<Game::Level_2>(TEXT("Level_2"));
+
+	addScene<Game::MapMakerScene>(TEXT("MapMakerScene"));
+
+	inputManager->RegisterCommand(this, ID_MENU_STARTGAME, &GameFramework::startGame);
+	inputManager->RegisterCommand(this, ID_MENU_MAPBUILDER, &GameFramework::loadMapBuilderScene);
 }
 
 GameFramework::~GameFramework()
@@ -137,4 +150,15 @@ void GameFramework::unloadCurrentScene()
 		drawer->UnloadAll();
 		inputManager->Clear();
 	}
+}
+
+void GameFramework::startGame()
+{
+	LoadSceneByIdx(0);
+}
+
+void GameFramework::loadMapBuilderScene()
+{
+	int idx = static_cast<int>(scenes.size()) - 1;
+	LoadSceneByIdx(idx);
 }

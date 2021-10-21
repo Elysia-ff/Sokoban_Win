@@ -26,6 +26,8 @@ private:
 
 	void onPaint() const;
 
-	void onKeyDown(WPARAM key);
+	void onKeyDown(WPARAM key) const;
+
+	void onCommand(WPARAM wParam) const;
 };
 } // namespace Elysia::Window
