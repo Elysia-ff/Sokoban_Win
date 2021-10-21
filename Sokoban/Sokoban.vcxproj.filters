@@ -108,6 +108,9 @@
     <ClInclude Include="src\Game\Scene\Level_1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Game\Scene\Level_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -162,6 +165,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Scene\Level_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\Level_2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

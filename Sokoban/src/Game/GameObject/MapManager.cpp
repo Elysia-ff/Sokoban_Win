@@ -121,18 +121,22 @@ std::vector<Int2> MapManager::GetPoses(MapInfo mapInfo) const
 
 void MapManager::OnPackageMoved(Package& movedPackage, Int2 prevPos)
 {
+	bool isMovedPackageInGoal = false;
 	int filledGoalsCount = 0;
 	for (Engine::Ptr<Goal>& goal : goals)
 	{
 		if (goal->GetPosition() == prevPos)
 		{
 			goal->SetAsEmpty();
-			movedPackage.SetActive(true);
 		}
 		else if (goal->GetPosition() == movedPackage.GetPosition())
 		{
 			goal->SetAsFilled();
-			movedPackage.SetActive(false);
+		}
+
+		if (movedPackage.GetPosition() == goal->GetPosition())
+		{
+			isMovedPackageInGoal = true;
 		}
 
 		if (goal->IsFilled())
@@ -140,6 +144,8 @@ void MapManager::OnPackageMoved(Package& movedPackage, Int2 prevPos)
 			filledGoalsCount++;
 		}
 	}
+
+	movedPackage.SetActive(!isMovedPackageInGoal);
 
 	if (filledGoalsCount == goals.size())
 	{

@@ -1,4 +1,4 @@
-#include "Level_1.h"
+#include "Level_2.h"
 
 #include "Engine/GameFramework/GameFramework.h"
 #include "Engine/GameFramework/Drawer.h"
@@ -8,18 +8,18 @@
 
 #include "resource.h"
 
-using Elysia::Game::Level_1;
+using Elysia::Game::Level_2;
 
-Level_1::Level_1(const tstring& _name, int _sceneIdx)
+Level_2::Level_2(const tstring& _name, int _sceneIdx)
 	: Scene(_name, _sceneIdx)
 {
 }
 
-Level_1::~Level_1()
+Level_2::~Level_2()
 {
 }
 
-void Level_1::Load()
+void Level_2::Load()
 {
 	Scene::Load();
 
@@ -30,14 +30,15 @@ void Level_1::Load()
 	MapManager& mapManager = AddGameObject<MapManager>(TEXT("MapManager"));
 	mapManager.SetMapData(
 		{
-			{ ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ' },
-			{ ' ', ' ', 'x', '#', 'x', ' ', ' ', ' ' },
-			{ ' ', ' ', 'x', ' ', 'x', 'x', 'x', 'x' },
-			{ 'x', 'x', 'x', 'o', ' ', 'o', '#', 'x' },
-			{ 'x', '#', ' ', 'o', 'p', 'x', 'x', 'x' },
-			{ 'x', 'x', 'x', 'x', 'o', 'x', ' ', ' ' },
-			{ ' ', ' ', ' ', 'x', '#', 'x', ' ', ' ' },
-			{ ' ', ' ', ' ', 'x', 'x', 'x', ' ', ' ' }
+			{ 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ' },
+			{ 'x', 'p', ' ', ' ', 'x', ' ', ' ', ' ', ' ' },
+			{ 'x', ' ', 'o', 'o', 'x', ' ', 'x', 'x', 'x' },
+			{ 'x', ' ', 'o', ' ', 'x', ' ', 'x', '#', 'x' },
+			{ 'x', 'x', 'x', ' ', 'x', 'x', 'x', '#', 'x' },
+			{ ' ', 'x', 'x', ' ', ' ', ' ', ' ', '#', 'x' },
+			{ ' ', 'x', ' ', ' ', ' ', 'x', ' ', ' ', 'x' },
+			{ ' ', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x' },
+			{ ' ', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ' }
 		});
 
 	std::vector<Int2> playerPoses = mapManager.GetPoses(MapInfo::Start);
@@ -46,7 +47,7 @@ void Level_1::Load()
 	player.SetPosition(playerPoses[0]);
 }
 
-void Level_1::Unload()
+void Level_2::Unload()
 {
 	Scene::Unload();
 }

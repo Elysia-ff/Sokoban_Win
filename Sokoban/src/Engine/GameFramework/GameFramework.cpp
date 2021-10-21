@@ -8,6 +8,7 @@
 #include "Engine/Scene/Scene.h"
 
 #include "Game/Scene/Level_1.h"
+#include "Game/Scene/Level_2.h"
 
 using Elysia::Engine::GameFramework;
 
@@ -111,6 +112,7 @@ GameFramework::GameFramework(const Window::MainWindow& _window)
 	, currentSceneIdx(-1)
 {
 	addScene<Game::Level_1>(TEXT("Level_1"));
+	addScene<Game::Level_2>(TEXT("Level_2"));
 }
 
 GameFramework::~GameFramework()
