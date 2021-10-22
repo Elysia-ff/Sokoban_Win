@@ -29,5 +29,7 @@ private:
 	void onKeyDown(WPARAM key) const;
 
 	void onCommand(WPARAM wParam) const;
+
+	void onMouse(UINT msg, LPARAM lParam) const;
 };
 } // namespace Elysia::Window

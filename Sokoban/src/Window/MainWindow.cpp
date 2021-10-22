@@ -72,6 +72,14 @@ LRESULT CALLBACK MainWindow::HandleMessage(HWND hWnd, UINT uMsg, WPARAM wParam, 
 
 		return 0;
 	}
+	case WM_MOUSEMOVE:
+	case WM_LBUTTONDOWN:
+	case WM_LBUTTONUP:
+	{
+		onMouse(uMsg, lParam);
+		
+		return 0;
+	}
 	}
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -102,4 +110,9 @@ void MainWindow::onKeyDown(WPARAM key) const
 void MainWindow::onCommand(WPARAM wParam) const
 {
 	Engine::GameFramework::GetInstance().OnCommand(wParam);
+}
+
+void MainWindow::onMouse(UINT msg, LPARAM lParam) const
+{
+	Engine::GameFramework::GetInstance().OnMouse(msg, lParam);
 }

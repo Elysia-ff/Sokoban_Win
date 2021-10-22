@@ -112,6 +112,11 @@ void GameFramework::OnCommand(WPARAM wParam) const
 	inputManager->OnCommand(LOWORD(wParam));
 }
 
+void GameFramework::OnMouse(UINT msg, LPARAM lParam) const
+{
+	inputManager->OnMouse(msg, Int2(LOWORD(lParam), HIWORD(lParam)));
+}
+
 GameFramework::GameFramework(const Window::MainWindow& _window)
 	: window(_window)
 	, drawer(new Drawer())

@@ -47,3 +47,15 @@ inline Int2 operator/(Int2 a, int n)
 {
 	return Int2(a.x / n, a.y / n);
 }
+
+namespace std
+{
+template <>
+struct hash<Int2>
+{
+	std::size_t operator()(const Int2& key) const
+	{
+		return std::hash<int>()(key.x) ^ std::hash<int>()(key.y);
+	}
+};
+}

@@ -3,6 +3,7 @@
 #include "Engine/GameFramework/GameFramework.h"
 #include "Engine/GameFramework/Drawer.h"
 
+#include "Game/GameObject/MapBuilder.h"
 #include "Game/GameObject/Pointer.h"
 
 #include "resource.h"
@@ -23,7 +24,9 @@ void MapMakerScene::Load()
 	Scene::Load();
 
 	Engine::GameFramework::GetInstance().GetDrawer().LoadAll({ IDB_WALL });
-	Pointer& pointer = AddGameObject<Pointer>(TEXT("Pointer"));
+
+	AddGameObject<MapBuilder>(TEXT("MapBuilder"));
+	AddGameObject<Pointer>(TEXT("Pointer"));
 }
 
 void MapMakerScene::Unload()

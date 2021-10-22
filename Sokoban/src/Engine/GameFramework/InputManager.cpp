@@ -44,3 +44,18 @@ void InputManager::OnCommand(WORD cmd) const
 		}
 	}
 }
+
+void InputManager::OnMouse(UINT msg, Int2 mousePosition) const
+{
+	auto iter = mouseBinds.find(msg);
+	if (iter != mouseBinds.end())
+	{
+		const std::vector<std::function<void(Int2)>>& v = iter->second;
+		for (const std::function<void(Int2)>& f : v)
+		{
+			f(mousePosition);
+		}
+
+		GameFramework::GetInstance().Repaint();
+	}
+}

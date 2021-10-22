@@ -162,6 +162,7 @@
     <ClCompile Include="src\Engine\Scene\Scene.cpp" />
     <ClCompile Include="src\Game\GameObject\ClearImg.cpp" />
     <ClCompile Include="src\Game\GameObject\Goal.cpp" />
+    <ClCompile Include="src\Game\GameObject\MapBuilder.cpp" />
     <ClCompile Include="src\Game\GameObject\MapManager.cpp" />
     <ClCompile Include="src\Game\GameObject\MapObject.cpp" />
     <ClCompile Include="src\Game\GameObject\Package.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="src\Engine\Transform.h" />
     <ClInclude Include="src\Game\GameObject\ClearImg.h" />
     <ClInclude Include="src\Game\GameObject\Goal.h" />
+    <ClInclude Include="src\Game\GameObject\MapBuilder.h" />
     <ClInclude Include="src\Game\GameObject\MapManager.h" />
     <ClInclude Include="src\Game\GameObject\MapObject.h" />
     <ClInclude Include="src\Game\GameObject\Package.h" />

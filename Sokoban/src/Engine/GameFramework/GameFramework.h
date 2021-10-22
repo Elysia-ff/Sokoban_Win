@@ -50,6 +50,8 @@ public:
 
 	void OnCommand(WPARAM wParam) const;
 
+	void OnMouse(UINT msg, LPARAM lParam) const;
+
 private:
 	GameFramework() = delete;
 
