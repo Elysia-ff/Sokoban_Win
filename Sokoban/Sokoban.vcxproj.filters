@@ -213,6 +213,9 @@
     <Image Include="Resources\Clear.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Erase.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

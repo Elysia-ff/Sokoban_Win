@@ -109,7 +109,9 @@ void GameFramework::OnKeyDown(WPARAM key) const
 
 void GameFramework::OnCommand(WPARAM wParam) const
 {
-	inputManager->OnCommand(LOWORD(wParam));
+	WORD cmd = LOWORD(wParam);
+	inputManager->OnGlobalCommand(cmd);
+	inputManager->OnCommand(cmd);
 }
 
 void GameFramework::OnMouse(UINT msg, LPARAM lParam) const
@@ -129,8 +131,8 @@ GameFramework::GameFramework(const Window::MainWindow& _window)
 
 	addScene<Game::MapMakerScene>(TEXT("MapMakerScene"));
 
-	inputManager->RegisterCommand(this, ID_MENU_STARTGAME, &GameFramework::startGame);
-	inputManager->RegisterCommand(this, ID_MENU_MAPBUILDER, &GameFramework::loadMapBuilderScene);
+	inputManager->RegisterGlobalCommand(this, ID_MENU_STARTGAME, &GameFramework::startGame);
+	inputManager->RegisterGlobalCommand(this, ID_MENU_MAPBUILDER, &GameFramework::loadMapBuilderScene);
 }
 
 GameFramework::~GameFramework()

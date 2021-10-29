@@ -38,6 +38,16 @@ private:
 
 	void moveTo(Int2 mousePosition);
 
+	void drawWall();
+
+	void drawGoal();
+
+	void drawStartSpot();
+
+	void drawPackage();
+
+	void drawErase();
+
 private:
 	Engine::Ptr<MapBuilder> mapBuilder;
 

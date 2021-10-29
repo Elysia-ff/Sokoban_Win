@@ -23,7 +23,8 @@ void MapMakerScene::Load()
 {
 	Scene::Load();
 
-	Engine::GameFramework::GetInstance().GetDrawer().LoadAll({ IDB_WALL });
+	Engine::GameFramework::GetInstance().GetDrawer().LoadAll(
+		{ IDB_WALL, IDB_GOAL_EMPTY, IDB_MAN_FRONT, IDB_PACKAGE, IDB_ERASE });
 
 	AddGameObject<MapBuilder>(TEXT("MapBuilder"));
 	AddGameObject<Pointer>(TEXT("Pointer"));

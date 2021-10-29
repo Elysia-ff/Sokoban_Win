@@ -27,6 +27,11 @@ public:
 	void OnKeyDown(WPARAM key) const;
 
 	template <typename T, typename Func>
+	void RegisterGlobalCommand(T obj, WORD cmd, Func func);
+
+	void OnGlobalCommand(WORD cmd) const;
+
+	template <typename T, typename Func>
 	void RegisterCommand(T obj, WORD cmd, Func func);
 
 	void OnCommand(WORD cmd) const;
@@ -38,6 +43,8 @@ public:
 
 private:
 	std::unordered_map<WPARAM, std::vector<std::function<void()>>> keyBinds;
+
+	std::unordered_map<WORD, std::vector<std::function<void()>>> globalCommandBinds;
 
 	std::unordered_map<WORD, std::vector<std::function<void()>>> commandBinds;
 

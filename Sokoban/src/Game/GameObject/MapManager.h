@@ -17,8 +17,6 @@ namespace Elysia::Game
 class Package;
 class Goal;
 
-using MapData = std::vector<std::vector<char>>;
-
 class MapManager : public Engine::GameObject
 {
 	DECLARE_TYPENAME(MapManager);

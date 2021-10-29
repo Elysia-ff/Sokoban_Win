@@ -62,6 +62,8 @@ IDB_GOAL_FILLED         BITMAP                  "Resources\\Goal_filled.bmp"
 
 IDB_CLEAR               BITMAP                  "Resources\\Clear.bmp"
 
+IDB_ERASE               BITMAP                  "Resources\\Erase.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -74,6 +76,14 @@ BEGIN
     BEGIN
         MENUITEM "Start Game",                  ID_MENU_STARTGAME
         MENUITEM "Map Builder",                 ID_MENU_MAPBUILDER
+    END
+    POPUP "Draw Mode"
+    BEGIN
+        MENUITEM "Wall",                        ID_DRAWMODE_WALL
+        MENUITEM "Goal",                        ID_DRAWMODE_GOAL
+        MENUITEM "Start Spot",                  ID_DRAWMODE_STARTSPOT
+        MENUITEM "Package",                     ID_DRAWMODE_PACKAGE
+        MENUITEM "Erase",                       ID_DRAWMODE_ERASE
     END
 END
 

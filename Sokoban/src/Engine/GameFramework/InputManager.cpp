@@ -15,6 +15,8 @@ InputManager::~InputManager()
 void InputManager::Clear()
 {
 	keyBinds.clear();
+	commandBinds.clear();
+	mouseBinds.clear();
 }
 
 void InputManager::OnKeyDown(WPARAM key) const
@@ -29,6 +31,19 @@ void InputManager::OnKeyDown(WPARAM key) const
 		}
 
 		GameFramework::GetInstance().Repaint();
+	}
+}
+
+void InputManager::OnGlobalCommand(WORD cmd) const
+{
+	auto iter = globalCommandBinds.find(cmd);
+	if (iter != globalCommandBinds.end())
+	{
+		const std::vector<std::function<void()>>& v = iter->second;
+		for (const std::function<void()>& f : v)
+		{
+			f();
+		}
 	}
 }
 

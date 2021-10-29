@@ -19,13 +19,20 @@ Pointer::Pointer(const tstring& _name, unsigned int _instanceID, Engine::Scene& 
 	mapBuilder = FindGameObject<MapBuilder>(TEXT("MapBuilder"));
 
 	image = AddComponent<Engine::ImageComponent>(TEXT("Image"));
-	image->SetImage(IDB_WALL);
 
 	Engine::GameFramework& gameFramework = Engine::GameFramework::GetInstance();
 	Engine::InputManager& inputManager = gameFramework.GetInputManager();
 	inputManager.RegisterMouse(this, WM_MOUSEMOVE, &Pointer::onMouseMove);
 	inputManager.RegisterMouse(this, WM_LBUTTONDOWN, &Pointer::onMouseDown);
 	inputManager.RegisterMouse(this, WM_LBUTTONUP, &Pointer::onMouseUp);
+
+	inputManager.RegisterCommand(this, ID_DRAWMODE_WALL, &Pointer::drawWall);
+	inputManager.RegisterCommand(this, ID_DRAWMODE_GOAL, &Pointer::drawGoal);
+	inputManager.RegisterCommand(this, ID_DRAWMODE_STARTSPOT, &Pointer::drawStartSpot);
+	inputManager.RegisterCommand(this, ID_DRAWMODE_PACKAGE, &Pointer::drawPackage);
+	inputManager.RegisterCommand(this, ID_DRAWMODE_ERASE, &Pointer::drawErase);
+
+	drawWall();
 }
 
 Pointer::~Pointer()
@@ -64,7 +71,16 @@ void Pointer::onMouseMove(Int2 mousePosition)
 
 	if (isPressed)
 	{
-		mapBuilder->AddItem(*this);
+		assert(image != nullptr);
+
+		if (image->GetImage() == IDB_ERASE)
+		{
+			mapBuilder->DeleteItem(*this);
+		}
+		else
+		{
+			mapBuilder->AddItem(*this);
+		}
 	}
 }
 
@@ -75,7 +91,16 @@ void Pointer::onMouseDown(Int2 mousePosition)
 
 void Pointer::onMouseUp(Int2 mousePosition)
 {
-	mapBuilder->AddItem(*this);
+	assert(image != nullptr);
+
+	if (image->GetImage() == IDB_ERASE)
+	{
+		mapBuilder->DeleteItem(*this);
+	}
+	else
+	{
+		mapBuilder->AddItem(*this);
+	}
 
 	isPressed = false;
 }
@@ -86,4 +111,44 @@ void Pointer::moveTo(Int2 mousePosition)
 	Int2 newPos = posInUnit * UNIT_PIXEL;
 
 	image->SetPosition(newPos);
+}
+
+void Pointer::drawWall()
+{
+	if (image != nullptr)
+	{
+		image->SetImage(IDB_WALL);
+	}
+}
+
+void Pointer::drawGoal()
+{
+	if (image != nullptr)
+	{
+		image->SetImage(IDB_GOAL_EMPTY);
+	}
+}
+
+void Pointer::drawStartSpot()
+{
+	if (image != nullptr)
+	{
+		image->SetImage(IDB_MAN_FRONT);
+	}
+}
+
+void Pointer::drawPackage()
+{
+	if (image != nullptr)
+	{
+		image->SetImage(IDB_PACKAGE);
+	}
+}
+
+void Pointer::drawErase()
+{
+	if (image != nullptr)
+	{
+		image->SetImage(IDB_ERASE);
+	}
 }

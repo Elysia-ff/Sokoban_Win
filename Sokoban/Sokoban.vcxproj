@@ -216,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Clear.bmp" />
+    <Image Include="Resources\Erase.bmp" />
     <Image Include="Resources\Goal_empty.bmp" />
     <Image Include="Resources\Goal_filled.bmp" />
     <Image Include="Resources\Man_front.bmp" />
