@@ -5,6 +5,7 @@
 #include "Engine/Component/ImageComponent.h"
 
 #include "Game/GameObject/Pointer.h"
+#include "Game/Scene/CustomScene.h"
 
 #include "resource.h"
 
@@ -65,21 +66,29 @@ void MapBuilder::exportMap() const
 	Int2 startSpot;
 	if (!findStartSpot(mapData, &startSpot))
 	{
-		// Only one StartSpot must exist 
+		Engine::GameFramework::GetInstance().ShowMessageBox(TEXT("Only one StartSpot must exist."), TEXT("Error"), MB_OK);
+
+		return;
 	}
 
 	std::vector<Int2> spotsToReach;
 	if (!findSpotsToReach(mapData, &spotsToReach))
 	{
-		// Goals and Packages doesn't match 
+		Engine::GameFramework::GetInstance().ShowMessageBox(TEXT("Goals and Packages doesn't match."), TEXT("Error"), MB_OK);
+		
+		return;
 	}
 
 	if (!validateMapData(mapData, startSpot, spotsToReach))
 	{
-		// Detected unreachable spot(s)
+		Engine::GameFramework::GetInstance().ShowMessageBox(TEXT("Detected unreachable spot(s)."), TEXT("Error"), MB_OK);
+
+		return;
 	}
 
-
+	int customSceneIdx = Engine::GameFramework::GetInstance().GetSceneCount() - 2;
+	CustomScene& scene = dynamic_cast<CustomScene&>(Engine::GameFramework::GetInstance().LoadSceneByIdx(customSceneIdx));
+	scene.ImportMap(mapData);
 }
 
 auto MapBuilder::makeMapData() const -> MapData
@@ -182,7 +191,7 @@ bool MapBuilder::findSpotsToReach(const MapData& mapData, std::vector<Int2>* out
 		}
 	}
 
-	return goalCount == packageCount;
+	return goalCount > 0 && goalCount == packageCount;
 }
 
 bool MapBuilder::validateMapData(const MapData& mapData, Int2 startSpot, const std::vector<Int2>& spotsToReach) const

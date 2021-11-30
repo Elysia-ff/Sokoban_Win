@@ -3,27 +3,34 @@
 #include "Engine/Object/Ptr.h"
 #include "Engine/Scene/Scene.h"
 
+#include "Game/GameCommon.h"
+
 namespace Elysia::Game
 {
 class MapManager;
+class Player;
 
-class Level_1 : public Engine::Scene
+class CustomScene : public Engine::Scene
 {
-	DECLARE_TYPENAME(Level_1);
+	DECLARE_TYPENAME(CustomScene);
 
 public:
-	Level_1(const tstring& _name, int _sceneIdx);
+	CustomScene(const tstring& _name, int _sceneIdx);
 
-	virtual ~Level_1() override;
+	virtual ~CustomScene() override;
 
 	virtual void Load() override;
 
 	virtual void Unload() override;
+
+	void ImportMap(const MapData& mapData);
 
 private:
 	void loadNextScene();
 
 private:
 	Engine::Ptr<MapManager> mapManager;
+
+	Engine::Ptr<Player> player;
 };
 } // namespace Elysia::Game

@@ -34,9 +34,9 @@ public:
 
 	InputManager& GetInputManager() const;
 
-	void LoadSceneByIdx(int idx);
+	Scene& LoadSceneByIdx(int idx);
 
-	void LoadSceneByName(const tstring& sceneName);
+	Scene& LoadSceneByName(const tstring& sceneName);
 
 	int GetCurrentSceneIdx() const;
 
@@ -51,6 +51,8 @@ public:
 	void OnCommand(WPARAM wParam) const;
 
 	void OnMouse(UINT msg, LPARAM lParam) const;
+
+	int ShowMessageBox(LPCTSTR lpText, LPCTSTR lpCaption, UINT uType) const;
 
 private:
 	GameFramework() = delete;

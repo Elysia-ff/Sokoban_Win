@@ -22,9 +22,6 @@ public:
 	void MoveToCenter(int mapWidth, int mapHeight);
 
 private:
-	void loadNextScene();
-
-private:
 	Engine::Ptr<Engine::ImageComponent> image;
 };
 } // namespace Elysia::Game

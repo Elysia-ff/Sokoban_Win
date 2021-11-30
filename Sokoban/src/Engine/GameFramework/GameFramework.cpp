@@ -9,6 +9,7 @@
 
 #include "Game/Scene/Level_1.h"
 #include "Game/Scene/Level_2.h"
+#include "Game/Scene/CustomScene.h"
 #include "Game/Scene/MapMakerScene.h"
 
 #include "resource.h"
@@ -50,7 +51,7 @@ auto GameFramework::GetInputManager() const -> InputManager&
 	return *inputManager;
 }
 
-void GameFramework::LoadSceneByIdx(int idx)
+auto GameFramework::LoadSceneByIdx(int idx) -> Scene&
 {
 	assert(0 <= idx && idx < scenes.size());
 
@@ -60,17 +61,17 @@ void GameFramework::LoadSceneByIdx(int idx)
 	scenes[currentSceneIdx]->Load();
 
 	Repaint();
+
+	return *(scenes[currentSceneIdx]);
 }
 
-void GameFramework::LoadSceneByName(const tstring& sceneName)
+auto GameFramework::LoadSceneByName(const tstring& sceneName) -> Scene&
 {
 	for (Scene* scene : scenes)
 	{
 		if (scene->GetName() == sceneName)
 		{
-			LoadSceneByIdx(scene->GetSceneIdx());
-
-			return;
+			return LoadSceneByIdx(scene->GetSceneIdx());
 		}
 	}
 
@@ -119,6 +120,11 @@ void GameFramework::OnMouse(UINT msg, LPARAM lParam) const
 	inputManager->OnMouse(msg, Int2(LOWORD(lParam), HIWORD(lParam)));
 }
 
+int GameFramework::ShowMessageBox(LPCTSTR lpText, LPCTSTR lpCaption, UINT uType) const
+{
+	return MessageBox(GetWindow().GetHandle(), lpText, lpCaption, uType);
+}
+
 GameFramework::GameFramework(const Window::MainWindow& _window)
 	: window(_window)
 	, drawer(new Drawer())
@@ -129,6 +135,7 @@ GameFramework::GameFramework(const Window::MainWindow& _window)
 	addScene<Game::Level_1>(TEXT("Level_1"));
 	addScene<Game::Level_2>(TEXT("Level_2"));
 
+	addScene<Game::CustomScene>(TEXT("CustomScene"));
 	addScene<Game::MapMakerScene>(TEXT("MapMakerScene"));
 
 	inputManager->RegisterGlobalCommand(this, ID_MENU_STARTGAME, &GameFramework::startGame);
@@ -166,6 +173,5 @@ void GameFramework::startGame()
 
 void GameFramework::loadMapBuilderScene()
 {
-	int idx = static_cast<int>(scenes.size()) - 1;
-	LoadSceneByIdx(idx);
+	LoadSceneByName(TEXT("MapMakerScene"));
 }
